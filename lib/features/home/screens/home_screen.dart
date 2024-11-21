@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  int _page = 0;
+  int _page = 0; //private variable to keep track of the current page
 
   void displayDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();

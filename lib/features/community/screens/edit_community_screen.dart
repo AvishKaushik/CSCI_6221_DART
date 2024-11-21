@@ -8,6 +8,7 @@ import 'package:collab/models/community_model.dart';
 import 'package:collab/responsive/responsive.dart';
 import 'package:collab/theme/pallete.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,7 +21,8 @@ class EditCommunityScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _EditCommunityScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _EditCommunityScreenState();
 }
 
 class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
@@ -28,6 +30,20 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
   File? profileFile;
   Uint8List? bannerWebFile;
   Uint8List? profileWebFile;
+
+  Future<void> uploadProfileImage(File file) async {
+    try {
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('user_profiles/${DateTime.now().millisecondsSinceEpoch}.jpg');
+      final uploadTask = storageRef.putFile(file);
+      await uploadTask;
+      final downloadURL = await storageRef.getDownloadURL();
+      print('File uploaded to Firebase Storage. URL: $downloadURL');
+    } catch (e) {
+      print('Error uploading file: $e');
+    }
+  }
 
   void selectBannerImage() async {
     final res = await pickImage();
@@ -119,14 +135,19 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                                           ? Image.memory(bannerWebFile!)
                                           : bannerFile != null
                                               ? Image.file(bannerFile!)
-                                              : community.banner.isEmpty || community.banner == Constants.bannerDefault
+                                              : community.banner.isEmpty ||
+                                                      community.banner ==
+                                                          Constants
+                                                              .bannerDefault
                                                   ? const Center(
                                                       child: Icon(
-                                                        Icons.camera_alt_outlined,
+                                                        Icons
+                                                            .camera_alt_outlined,
                                                         size: 40,
                                                       ),
                                                     )
-                                                  : Image.network(community.banner),
+                                                  : Image.network(
+                                                      community.banner),
                                     ),
                                   ),
                                 ),
@@ -137,16 +158,19 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                                     onTap: selectProfileImage,
                                     child: profileWebFile != null
                                         ? CircleAvatar(
-                                            backgroundImage: MemoryImage(profileWebFile!),
+                                            backgroundImage:
+                                                MemoryImage(profileWebFile!),
                                             radius: 32,
                                           )
                                         : profileFile != null
                                             ? CircleAvatar(
-                                                backgroundImage: FileImage(profileFile!),
+                                                backgroundImage:
+                                                    FileImage(profileFile!),
                                                 radius: 32,
                                               )
                                             : CircleAvatar(
-                                                backgroundImage: NetworkImage(community.avatar),
+                                                backgroundImage: NetworkImage(
+                                                    community.avatar),
                                                 radius: 32,
                                               ),
                                   ),

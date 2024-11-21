@@ -25,7 +25,7 @@ class FeedScreen extends ConsumerWidget {
                 ),
               ));
     }
-    if (!isGuest) {
+    else if (!isGuest) {
       return ref.watch(userCommunitiesProvider).when(
             data: (communities) => ref.watch(userPostsProvider(communities)).when(
                   data: (data) {

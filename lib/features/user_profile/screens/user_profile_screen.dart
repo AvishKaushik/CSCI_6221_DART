@@ -48,11 +48,12 @@ class UserProfileScreen extends ConsumerWidget {
                         Container(
                           alignment: Alignment.bottomLeft,
                           padding: const EdgeInsets.all(20),
-                          child: OutlinedButton(
+                          child: ElevatedButton(
                             onPressed: () => navigateToEditUser(context),
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
+                                // side: const BorderSide(color: Colors.white),
                               ),
                               padding: const EdgeInsets.symmetric(horizontal: 25),
                             ),
@@ -71,7 +72,7 @@ class UserProfileScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'u/${user.name}',
+                                '${user.name}',
                                 style: const TextStyle(
                                   fontSize: 19,
                                   fontWeight: FontWeight.bold,

@@ -8,9 +8,9 @@ class Constants {
   static const googlePath = 'assets/images/google.png';
 
   static const bannerDefault =
-      'https://thumbs.dreamstime.com/b/abstract-stained-pattern-rectangle-background-blue-sky-over-fiery-red-orange-color-modern-painting-art-watercolor-effe-texture-123047399.jpg';
+      'https://e1.pxfuel.com/desktop-wallpaper/324/303/desktop-wallpaper-banner-backgrounds-flex-design.jpg';
   static const avatarDefault =
-      'https://external-preview.redd.it/5kh5OreeLd85QsqYO1Xz_4XSLYwZntfjqou-8fyBFoE.png?auto=webp&s=dbdabd04c399ce9c761ff899f5d38656d1de87c2';
+      'https://imgs.search.brave.com/_jD7ZrKAp1CeE7L602f0ZXCoX18Ap-6RdSa8L2oUNqY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wdWIt/c3RhdGljLmZvdG9y/LmNvbS9hc3NldHMv/cHJvamVjdHMvcGFn/ZXMvY2MxZDkwZTlm/MGM0NDcyYTkzMmVm/NTNkNmY3NWI0N2Uv/Zm90b3ItNjViYzY4/NWM0MjI2NGNlNjky/ODMyNDNhNzYxMjY3/MjcuanBn';
 
   static const tabWidgets = [
     FeedScreen(),
